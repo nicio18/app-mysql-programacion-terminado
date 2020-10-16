@@ -1,0 +1,45 @@
+{{!listar enlaces}}
+
+<div class="container p-4"></div>
+    <div class="row">
+        {{! each recorre la lista que le devuelve el servidor}}
+        {{#each links}}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    {{!target para que redirija a la direccion en una pestaña nueva}}
+                    <a href="{{url}}" target="_blank">
+                        {{! etiqueta a redirecciona al links creado}}
+                        {{!text uppercase para que el titulo este en mayuscula}}
+                        <h3 class="card-title text-uppercase">
+                            {{title}}
+                        </h3>
+                    </a>
+                    <p class="m-2">{{description}}</p>
+                    <p class="text-muted">
+                        {{!}}
+                        {{timeago created_at}}
+                    </p>
+                    {{! configuramos el boton eliminar mediante el href y concatenando el id}}
+                    <a class="btn btn-danger" href="/links/delete/{{id}}">
+                        Delete Link
+                    </a>
+                    {{! redireccionamos a edit}}
+                    <a class="btn btn-secondary" href="/links/edit/{{id}}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        {{! configuramos un mensaje cuando no hay nada creado aun}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>There are not Links saved yet.</p>
+                {{!y redireccionamos a la ruta para agregar el primer enlase}}
+                <a href="/links/add">Create One!</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
